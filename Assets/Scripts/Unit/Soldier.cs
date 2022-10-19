@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using Util;
 
@@ -56,8 +56,8 @@ public class Soldier : Unit
     protected override void OnEnable()
     {
         base.OnEnable();
-        _ragdoll.SetEnabled(false);
-        _animator.enabled = true;
+        //_ragdoll.SetEnabled(false);
+        //_animator.enabled = true;
     }
 
     protected override void OnUpdate()
@@ -96,16 +96,16 @@ public class Soldier : Unit
             RotateTowardsPosition(_navMeshAgent.destination);
         }
 
-        _animator.SetBool("isRunning", isRunning);
-        _animator.SetBool("isShooting", isShooting);
+        //_animator.SetBool("isRunning", isRunning);
+        //_animator.SetBool("isShooting", isShooting);
     }
 
     protected override void OnShoot()
     {
         _shootSound.Play();
-        /*Bullet bullet = SimplePool.Spawn(_bulletPrefab, _bulletSpawnPoint.position, _bulletSpawnPoint.rotation)
+        Bullet bullet = SimplePool.Spawn(_bulletPrefab, _bulletSpawnPoint.position, _bulletSpawnPoint.rotation)
             .GetComponent<Bullet>();
-        bullet.Init(this);*/
+        bullet.Init(this);
     }
 
     protected override void Kill(Vector3 damageForce)

@@ -1,3 +1,32 @@
+﻿///
+/// Simple pooling for Unity.
+///   Author: Martin "quill18" Glaude (quill18@quill18.com)
+///   Latest Version: https://gist.github.com/quill18/5a7cfffae68892621267
+///   License: CC0 (http://creativecommons.org/publicdomain/zero/1.0/)
+///   UPDATES:
+/// 	2015-04-16: Changed Pool to use a Stack generic.
+/// 
+/// Usage:
+/// 
+///   There's no need to do any special setup of any kind.
+/// 
+///   Instead of calling Instantiate(), use this:
+///       SimplePool.Spawn(somePrefab, somePosition, someRotation);
+/// 
+///   Instead of destroying an object, use this:
+///       SimplePool.Despawn(myGameObject);
+/// 
+///   If desired, you can preload the pool with a number of instances:
+///       SimplePool.Preload(somePrefab, 20);
+/// 
+/// Remember that Awake and Start will only ever be called on the first instantiation
+/// and that member variables won't be reset automatically.  You should reset your
+/// object yourself after calling Spawn().  (i.e. You'll have to do things like set
+/// the object's HPs to max, reset animation states, etc...)
+/// 
+/// 
+/// 
+
 using UnityEngine;
 using System.Collections.Generic;
 

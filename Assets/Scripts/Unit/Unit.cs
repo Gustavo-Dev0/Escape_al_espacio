@@ -43,29 +43,29 @@ public abstract class Unit : Attackable
     protected virtual void Awake()
     {
         _collider = transform.GetComponent<Collider>();
-        _navMeshAgent = transform.GetComponent<NavMeshAgent>();
+        //_navMeshAgent = transform.GetComponent<NavMeshAgent>();
         _maxAttackRange = Mathf.Pow(_maxAttackRange, 2);
         _minAttackRange = Mathf.Pow(_minAttackRange, 2);
-        _stoppingDistance = Mathf.Pow(_navMeshAgent.stoppingDistance, 2);
+        //_stoppingDistance = Mathf.Pow(_navMeshAgent.stoppingDistance, 2);
     }
 
     void Start()
     {
-        _speed = _navMeshAgent.speed;
+        //_speed = _navMeshAgent.speed;
         OnTakeDamage += () => { floatingHealthBar.SetHealth(_health); };
     }
 
     protected virtual void OnEnable()
     {
-        _health = _maxHealth;
+        //_health = _maxHealth;
         _attackCooldownTimer = 0;
         _collider.enabled = true;
-        _navMeshAgent.enabled = true;
-        _attackTarget = null;
+        //_navMeshAgent.enabled = true;
+        //_attackTarget = null;
         _selection.SetActive(false);
-        floatingHealthBar.SetMaxHealth(_health);
-        floatingHealthBar.SetHealth(_health);
-        _navMeshAgent.SetDestination(transform.position + transform.forward * -2);
+        //floatingHealthBar.SetMaxHealth(_health);
+        //floatingHealthBar.SetHealth(_health);
+        //_navMeshAgent.SetDestination(transform.position + transform.forward * -2);
     }
 
 
@@ -172,9 +172,9 @@ public abstract class Unit : Attackable
     {
         if (IsDead()) return;
 
-        /*DamagePopup damagePopup = SimplePool.Spawn(_damagePopupPrefab, Vector3.zero, Quaternion.identity)
+        DamagePopup damagePopup = SimplePool.Spawn(_damagePopupPrefab, Vector3.zero, Quaternion.identity)
             .GetComponent<DamagePopup>();
-        damagePopup.Show(transform.position, damage);*/
+        damagePopup.Show(transform.position, damage);
 
         _health -= damage;
         OnTakeDamage?.Invoke();

@@ -51,8 +51,8 @@ public class Tank : Unit
     protected override void Kill(Vector3 damageForce)
     {
         base.Kill(damageForce);
-        /*ParticlesManager.Instance.Spawn("explosion", transform.position);
-        _fireParticles.SetActive(true);*/
+        ParticlesManager.Instance.Spawn("explosion", transform.position);
+        _fireParticles.SetActive(true);
     }
     
     protected override void Awake()
@@ -133,8 +133,8 @@ public class Tank : Unit
         _rotateCannonSound.Stop();
         _animator.SetTrigger("Shoot");
         _shootingSound.Play();
-        /*Missile missile = SimplePool.Spawn(_missilePrefab, _cannonSpawnPoint.position, _cannonSpawnPoint.rotation).GetComponent<Missile>();
-        missile.Init(this);*/
+        Missile missile = SimplePool.Spawn(_missilePrefab, _cannonSpawnPoint.position, _cannonSpawnPoint.rotation).GetComponent<Missile>();
+        missile.Init(this);
     }
 
     private void RotateCannon(Vector3 position)

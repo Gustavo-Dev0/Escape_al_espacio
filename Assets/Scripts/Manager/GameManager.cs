@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Camera _camera;
     [SerializeField] private Canvas _canvas;
-    //[SerializeField] private Rocket _rocket;
+    [SerializeField] private Rocket _rocket;
     [SerializeField] private Texture2D _cursor;
 
     [Header("Pause")]
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     public Camera Camera => _camera;
     public Canvas Canvas => _canvas;
-    //public Rocket Rocket => _rocket;
+    public Rocket Rocket => _rocket;
     public bool IsActive => !_isPaused && !_finished;
 
     private bool _isPaused = false;
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         _finished = true;
         _camera.GetComponent<CameraMovementController>().enabled = false;
         _camera.GetComponent<CameraController>().enabled = false;
-        //_camera.transform.parent = _rocket.transform;
+        _camera.transform.parent = _rocket.transform;
         _camera.transform.localPosition = _endCameraPosition;
         _canvas.gameObject.SetActive(false);
 

@@ -36,36 +36,43 @@ public abstract class Unit : Attackable
     // Stats
     private float _health;
 
+    public Vector3[] waypoints;
+
     protected abstract void OnUpdate();
+    protected abstract void OnStart();
     protected abstract void OnShoot();
     public abstract void InitTeam(Team team);
 
     protected virtual void Awake()
     {
         _collider = transform.GetComponent<Collider>();
-        //_navMeshAgent = transform.GetComponent<NavMeshAgent>();
+        _navMeshAgent = transform.GetComponent<NavMeshAgent>();
         _maxAttackRange = Mathf.Pow(_maxAttackRange, 2);
         _minAttackRange = Mathf.Pow(_minAttackRange, 2);
-        //_stoppingDistance = Mathf.Pow(_navMeshAgent.stoppingDistance, 2);
+        _stoppingDistance = Mathf.Pow(_navMeshAgent.stoppingDistance, 2);
     }
 
     void Start()
     {
-        //_speed = _navMeshAgent.speed;
+        _speed = _navMeshAgent.speed;
+        //Debug.Log(_speed);
         OnTakeDamage += () => { floatingHealthBar.SetHealth(_health); };
+        OnStart();
+
+        waypoints = new Vector3[] {new Vector3(36.3499985f,0,42.2999992f), new Vector3(31.3600006f,0,12.7799997f), new Vector3(4.4000001f,0,32.5999985f), new Vector3(0,0,9)};
     }
 
     protected virtual void OnEnable()
     {
-        //_health = _maxHealth;
+        _health = _maxHealth;
         _attackCooldownTimer = 0;
         _collider.enabled = true;
-        //_navMeshAgent.enabled = true;
-        //_attackTarget = null;
+        _navMeshAgent.enabled = true;
+        _attackTarget = null;
         _selection.SetActive(false);
         //floatingHealthBar.SetMaxHealth(_health);
         //floatingHealthBar.SetHealth(_health);
-        //_navMeshAgent.SetDestination(transform.position + transform.forward * -2);
+        _navMeshAgent.SetDestination(transform.position + transform.forward * -2);
     }
 
 
@@ -92,14 +99,16 @@ public abstract class Unit : Attackable
 
     public void MoveTo(Vector3 position)
     {
+        
         if (IsDead()) return;
 
-        if (!_team.AI)
+        /*if (!_team.AI)
         {
             _moveSound.Play();
-        }
+        }*/
 
         _isMovingToASelectedPosition = true;
+        Debug.Log(_speed);
         _navMeshAgent.speed = _speed;
         RemoveTarget();
         SetDestination(position);

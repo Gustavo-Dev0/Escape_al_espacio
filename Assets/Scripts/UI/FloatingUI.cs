@@ -9,13 +9,14 @@ namespace UI
     
         protected virtual void Start()
         {
-            _camera = GameManager.Instance.Camera.transform;
+            //_camera = GameManager.Instance.Camera.transform;
         }
 
         void LateUpdate()
         {
             if (!_lookAtCamera) return;
-            transform.LookAt(_camera);
+            
+            //transform.LookAt(_camera);
         }
     }
 }

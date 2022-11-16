@@ -151,4 +151,8 @@ public class Tank : Unit
     {
         _cannon.rotation = Quaternion.Slerp(_cannon.rotation, transform.rotation, Time.deltaTime * _cannonRotateSpeed);
     }
+
+    protected override void OnStart() {
+        //PlayerUnitsManager.Instance.Register(this);
+    }
 }

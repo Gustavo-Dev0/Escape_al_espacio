@@ -12,8 +12,6 @@ public class CameraController : MonoBehaviour
     private HashSet<Vector3> _points { get; } = new HashSet<Vector3>();
     public Vector3 originPoint = new Vector3(0, 0, 0);
 
-    public PlayerController _player;
-
     private void Start()
     {
         _selectionPanel.gameObject.SetActive(false);
@@ -60,6 +58,8 @@ public class CameraController : MonoBehaviour
             unit.DeSelect();
         }
         _selectedUnits.Clear();
+
+        _selectionPanel.gameObject.SetActive(true);
     }
 
     private void KeepPressedClick()
@@ -83,7 +83,8 @@ public class CameraController : MonoBehaviour
     {
         KeepPressedClick();
         _selectionPanel.gameObject.SetActive(false);
-        /*Vector3 mouse = Input.mousePosition;
+
+        Vector3 mouse = Input.mousePosition;
         Vector3 startPosition = _selectionPanel.position;
         Vector3 endPosition = mouse;
 
@@ -127,15 +128,15 @@ public class CameraController : MonoBehaviour
         foreach (Unit unit in _selectedUnits)
         {
             unit.Select();
-        }*/
+        }
+
+        _selectionPanel.gameObject.SetActive(false);
     }
 
     private void OnRightClick()
     {
-
-        
-
-        /*if (_selectedUnits.Count == 0) return;
+        _selectionPanel.gameObject.SetActive(false);
+        if (_selectedUnits.Count == 0) return;
 
         Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit _hit, _raycastDistance))
@@ -166,13 +167,7 @@ public class CameraController : MonoBehaviour
                 _points.Add(points[index]);
                 index++;
             }
-        }*/
-
-
-        //Momentaneo
-        //Debug.Log(Input.mousePosition);
-        Vector3 pM = Input.mousePosition;
-        _player.movePlayer(pM);
+        }
     }
 
     private static Vector3[] GetUnitTrainingPoints(Vector3 mouse_point, int size)

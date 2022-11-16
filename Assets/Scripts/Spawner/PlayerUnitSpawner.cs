@@ -53,6 +53,7 @@ public class PlayerUnitSpawner : MonoBehaviour
 
     public virtual void SpawnSoldier()
     {
+        Debug.Log("ASSDIFwje");
         //bool success = PlayerMoneyManager.Instance.Remove(_soldierCost);
         bool success = true;
         if (!success)

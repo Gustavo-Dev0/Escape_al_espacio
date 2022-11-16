@@ -6,9 +6,9 @@ public class PlayerUnitsManager : MonoBehaviour
 {
     [SerializeField] private LayerMask _unitsMask;
     public LayerMask UnitsMask => _unitsMask;
-    public List<Unit> Units => _units;
+    [SerializeField] public List<Unit> Units => _units;
 
-    private List<Unit> _units;
+    [SerializeField] private List<Unit> _units;
     public static PlayerUnitsManager Instance { get; private set; }
 
     void Awake()

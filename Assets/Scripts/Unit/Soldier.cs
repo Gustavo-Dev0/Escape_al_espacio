@@ -51,6 +51,7 @@ public class Soldier : Unit
         OnTakeDamage += () => _impactSound.Play();
 
         base.Awake();
+        
     }
 
     protected override void OnEnable()
@@ -63,7 +64,7 @@ public class Soldier : Unit
     protected override void OnUpdate()
     {
         bool isShooting = false;
-        if (_attackTarget != null)
+        /*if (_attackTarget != null)
         {
             Vector3 targetPosition = _attackTarget.transform.position;
             Vector3 directionToTarget = targetPosition - transform.position;
@@ -87,12 +88,12 @@ public class Soldier : Unit
             }
 
             if (isShooting) Shoot();
-        }
-
+        }*/
+        //RotateTowardsPosition(_navMeshAgent.destination);
         bool isRunning = _navMeshAgent.velocity.magnitude > 0.1f;
         if (isRunning)
         {
-            _footstepsSound.Play();
+            //_footstepsSound.Play();
             RotateTowardsPosition(_navMeshAgent.destination);
         }
 
@@ -122,5 +123,9 @@ public class Soldier : Unit
         _animator.enabled = false;
         _ragdoll.SetEnabled(true);
         _ragdoll.AddImpulse(damageForce);
+    }
+
+    protected override void OnStart() {
+        PlayerUnitsManager.Instance.Register(this);
     }
 }
